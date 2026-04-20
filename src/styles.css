@@ -2,6 +2,8 @@
 @source "../src";
 @import "tw-animate-css";
 
+@import url("https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;700;800&family=Inter:wght@400;500;600;700&family=Caveat:wght@500;700&display=swap");
+
 @custom-variant dark (&:is(.dark *));
 
 /*
@@ -62,26 +64,41 @@
 }
 
 :root {
-  --radius: 0.625rem;
-  --background: oklch(1 0 0);
-  --foreground: oklch(0.129 0.042 264.695);
-  --card: oklch(1 0 0);
-  --card-foreground: oklch(0.129 0.042 264.695);
-  --popover: oklch(1 0 0);
-  --popover-foreground: oklch(0.129 0.042 264.695);
-  --primary: oklch(0.208 0.042 265.755);
-  --primary-foreground: oklch(0.984 0.003 247.858);
-  --secondary: oklch(0.968 0.007 247.896);
-  --secondary-foreground: oklch(0.208 0.042 265.755);
-  --muted: oklch(0.968 0.007 247.896);
-  --muted-foreground: oklch(0.554 0.046 257.417);
-  --accent: oklch(0.968 0.007 247.896);
-  --accent-foreground: oklch(0.208 0.042 265.755);
+  --radius: 0.875rem;
+  /* Warm cream background, deep coffee text */
+  --background: oklch(0.985 0.018 85);
+  --foreground: oklch(0.22 0.04 50);
+  --card: oklch(0.995 0.012 85);
+  --card-foreground: oklch(0.22 0.04 50);
+  --popover: oklch(0.995 0.012 85);
+  --popover-foreground: oklch(0.22 0.04 50);
+  /* Deep saffron / brick orange */
+  --primary: oklch(0.62 0.19 42);
+  --primary-foreground: oklch(0.99 0.01 85);
+  /* Turmeric yellow accent */
+  --secondary: oklch(0.86 0.16 88);
+  --secondary-foreground: oklch(0.25 0.05 50);
+  --muted: oklch(0.94 0.025 80);
+  --muted-foreground: oklch(0.45 0.04 55);
+  /* Banana-leaf green */
+  --accent: oklch(0.62 0.14 145);
+  --accent-foreground: oklch(0.99 0.01 85);
   --destructive: oklch(0.577 0.245 27.325);
-  --destructive-foreground: oklch(0.984 0.003 247.858);
-  --border: oklch(0.929 0.013 255.508);
-  --input: oklch(0.929 0.013 255.508);
-  --ring: oklch(0.704 0.04 256.788);
+  --destructive-foreground: oklch(0.99 0.01 85);
+  --border: oklch(0.88 0.03 75);
+  --input: oklch(0.92 0.025 80);
+  --ring: oklch(0.62 0.19 42);
+  /* Brand extras */
+  --spice: oklch(0.55 0.22 28);
+  --leaf: oklch(0.55 0.15 145);
+  --turmeric: oklch(0.82 0.18 88);
+  --gradient-warm: linear-gradient(135deg, oklch(0.62 0.19 42), oklch(0.78 0.18 75));
+  --gradient-hero: linear-gradient(180deg, oklch(0.22 0.05 50 / 0.15) 0%, oklch(0.22 0.05 50 / 0.85) 100%);
+  --shadow-warm: 0 20px 60px -20px oklch(0.62 0.19 42 / 0.45);
+  --shadow-soft: 0 8px 30px -10px oklch(0.4 0.08 50 / 0.25);
+  --font-display: "Playfair Display", Georgia, serif;
+  --font-body: "Inter", system-ui, sans-serif;
+  --font-script: "Caveat", cursive;
   --chart-1: oklch(0.646 0.222 41.116);
   --chart-2: oklch(0.6 0.118 184.704);
   --chart-3: oklch(0.398 0.07 227.392);
@@ -132,6 +149,15 @@
   --sidebar-ring: oklch(0.551 0.027 264.364);
 }
 
+@theme inline {
+  --font-display: var(--font-display);
+  --font-sans: var(--font-body);
+  --font-script: var(--font-script);
+  --color-spice: var(--spice);
+  --color-leaf: var(--leaf);
+  --color-turmeric: var(--turmeric);
+}
+
 @layer base {
   * {
     border-color: var(--color-border);
@@ -140,5 +166,30 @@
   body {
     background-color: var(--color-background);
     color: var(--color-foreground);
+    font-family: var(--font-body);
+    -webkit-font-smoothing: antialiased;
+  }
+
+  h1, h2, h3, h4 {
+    font-family: var(--font-display);
+    letter-spacing: -0.02em;
   }
 }
+
+@layer utilities {
+  .font-script { font-family: var(--font-script); }
+  .text-balance { text-wrap: balance; }
+  .bg-gradient-warm { background-image: var(--gradient-warm); }
+  .shadow-warm { box-shadow: var(--shadow-warm); }
+  .shadow-soft { box-shadow: var(--shadow-soft); }
+  .kolam-pattern {
+    background-image: radial-gradient(circle at 1px 1px, oklch(0.62 0.19 42 / 0.15) 1px, transparent 0);
+    background-size: 24px 24px;
+  }
+}
+
+@keyframes float-up {
+  from { opacity: 0; transform: translateY(20px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+.animate-float-up { animation: float-up 0.8s ease-out both; }
