@@ -6,6 +6,7 @@ import idliImg from "@/assets/idli.jpg";
 import parottaImg from "@/assets/parotta.jpg";
 import pongalImg from "@/assets/pongal.jpg";
 import { ArrowRight, Star, Leaf, Heart, Award, Utensils, Clock, IndianRupee } from "lucide-react";
+import { buildWhatsAppLink } from "@/lib/shop";
 
 export const Route = createFileRoute("/")({
   head: () => ({
@@ -60,7 +61,7 @@ function HomePage() {
           </p>
           <div className="mt-10 flex flex-wrap gap-4">
             <a
-              href="https://wa.me/919876543210"
+              href={buildWhatsAppLink("Vanakkam! I'd like to place an order.")}
               target="_blank"
               rel="noreferrer"
               className="inline-flex items-center gap-2 rounded-full bg-primary text-primary-foreground px-7 py-4 text-base font-semibold shadow-warm hover:scale-[1.02] transition"
@@ -173,7 +174,7 @@ function HomePage() {
             Order via WhatsApp, call us, or walk into our T. Nagar shop. We'll make it feel like home.
           </p>
           <div className="mt-8 flex flex-wrap gap-3 justify-center">
-            <a href="https://wa.me/919876543210" target="_blank" rel="noreferrer" className="rounded-full bg-accent text-accent-foreground px-6 py-3 font-semibold shadow-warm">WhatsApp Order</a>
+            <a href={buildWhatsAppLink("Vanakkam! I'd like to place an order.")} target="_blank" rel="noreferrer" className="rounded-full bg-accent text-accent-foreground px-6 py-3 font-semibold shadow-warm">WhatsApp Order</a>
             <Link to="/contact" className="rounded-full bg-background text-foreground px-6 py-3 font-semibold inline-flex items-center gap-2">
               <Utensils className="w-4 h-4" /> Visit Us
             </Link>
